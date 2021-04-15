@@ -16,12 +16,17 @@ public class MyParser {
         }
     }
 
-    public static void avitoTest() throws IOException {
-        Document doc = Jsoup.connect("https://www.avito.ru/smolensk").get();
-        log(doc.title());
-        Elements divs = doc.select(".carousel-list-1efLg .story-previewer-title-eJkxt");
-        for (Element headline : divs) {
-            log(headline.text());
+    public static void avitoTest(String query) throws IOException {
+        String url = "https://www.avito.ru/smolensk?q="+query;
+        String q = ".items-items-38oUm div[data-marker=\"item\"] .iva-item-body-NPl6W";
+        Document doc = Jsoup.connect(url).get();
+        Elements sp = doc.select(q);
+        for (Element item: sp) {
+            String qt = ".iva-item-titleStep-2bjuh a";
+            String text = item.select(qt).first().text();
+            String qp = ".iva-item-priceStep-2qRpg .price-root-1n2wM";
+            String price = item.select(qp).first().text();
+            log(text + " - " + price);
         }
     }
 
