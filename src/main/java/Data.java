@@ -14,6 +14,10 @@ public class Data {
         return items;
     }
 
+    public static String[] getItemsForID(int id) {
+        return items[id];
+    }
+
     public static void setItems(String[][] items) {
         Data.items = items;
     }
