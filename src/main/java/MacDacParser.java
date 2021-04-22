@@ -27,11 +27,11 @@ public class MacDacParser {
         return ans;
     }
 
-    public static String[][] getItems(){
+    public static Item[][] getItems(){
         String q = ".page-catalog section";
         Elements sections = doc.select(q);
         int n = sections.size();
-        String[][] ans = new String[n][];
+        Item[][] ans = new Item[n][];
         for(int i = 0; i < n; i++) {
             String qt = "ul.menu-catalog li.catalog-product";
             Elements items = sections.get(i).select(qt);
@@ -40,13 +40,11 @@ public class MacDacParser {
         return ans;
     }
 
-    public static String[] convertElements(Elements el){
+    public static Item[] convertElements(Elements el){
         int n = el.size();
-        String[] ans = new String[n];
+        Item[] ans = new Item[n];
         for (int i = 0; i < n; i++){
-            String qt = ".catalog-product__content .catalog-product-title";
-            String text = el.get(i).select(qt).first().text();
-            ans[i] = text;
+            ans[i] = new Item(el.get(i));
         }
         return ans;
     }

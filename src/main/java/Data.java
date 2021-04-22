@@ -1,6 +1,6 @@
 public class Data {
     static String[] categories;
-    static String[][] items;
+    static Item[][] items;
 
     public static String[] getCategories() {
         return categories;
@@ -10,15 +10,21 @@ public class Data {
         Data.categories = categories;
     }
 
-    public static String[][] getItems() {
+    public static Item[][] getItems() {
         return items;
     }
 
-    public static String[] getItemsForID(int id) {
-        return items[id];
+    public static String[] getNamesForID(int id) {
+        int n = items[id].length;
+        String[] ans = new String[n];
+        for(int i = 0; i < n ; i++)
+            ans[i] = items[id][i].name;
+        return ans;
     }
 
-    public static void setItems(String[][] items) {
+
+
+    public static void setItems(Item[][] items) {
         Data.items = items;
     }
 }

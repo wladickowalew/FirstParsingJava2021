@@ -30,7 +30,7 @@ class MyPanel extends JPanel{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int i = categoryList.getSelectedIndex();
-                itemsList.setListData(Data.getItemsForID(i));
+                itemsList.setListData(Data.getNamesForID(i));
             }
         });
         add(categoryList);
