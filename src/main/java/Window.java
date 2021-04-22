@@ -19,7 +19,10 @@ class MyPanel extends JPanel{
     }
 
     public void addComponents(){
-
+        JList categoryList = new JList();
+        categoryList.setBounds(30, 30, 200, 400);
+        categoryList.setListData(Data.getCategories());
+        add(categoryList);
     }
 
 }

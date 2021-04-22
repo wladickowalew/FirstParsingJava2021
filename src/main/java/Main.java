@@ -9,6 +9,8 @@ public class Main {
 //        String q = sc.nextLine();
 //        MyParser.avitoTest(q);
         MacDacParser.parse();
+        Data.setCategories(MacDacParser.getCategories());
+        Data.setItems(MacDacParser.getItems());
         Window window = new Window();
     }
 }

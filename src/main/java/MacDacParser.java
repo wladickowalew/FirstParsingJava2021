@@ -7,13 +7,48 @@ import java.io.IOException;
 
 public class MacDacParser {
 
+    static Document doc;
+
     public static void parse() throws IOException {
         String url = "https://mcdonalds.ru/menu/delivery";
+        doc = Jsoup.connect(url).get();
+    }
+
+    public static String[] getCategories(){
         String q = ".page-catalog section";
-        Document doc = Jsoup.connect(url).get();
         Elements sections = doc.select(q);
-        for(Element section: sections)
-            parseSection(section);
+        int n = sections.size();
+        String[] ans = new String[n];
+        for(int i = 0; i < n; i++) {
+            String qt = ".category-title";
+            String text = sections.get(i).select(qt).first().text();
+            ans[i] = text;
+        }
+        return ans;
+    }
+
+    public static String[][] getItems(){
+        String q = ".page-catalog section";
+        Elements sections = doc.select(q);
+        int n = sections.size();
+        String[][] ans = new String[n][];
+        for(int i = 0; i < n; i++) {
+            String qt = "ul.menu-catalog li.catalog-product";
+            Elements items = sections.get(i).select(qt);
+            ans[i] = convertElements(items);
+        }
+        return ans;
+    }
+
+    public static String[] convertElements(Elements el){
+        int n = el.size();
+        String[] ans = new String[n];
+        for (int i = 0; i < n; i++){
+            String qt = ".catalog-product__content .catalog-product-title";
+            String text = el.get(i).select(qt).first().text();
+            ans[i] = text;
+        }
+        return ans;
     }
 
     public static void parseSection(Element section) throws IOException {
