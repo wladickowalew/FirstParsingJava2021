@@ -9,5 +9,6 @@ public class Main {
 //        String q = sc.nextLine();
 //        MyParser.avitoTest(q);
         MacDacParser.parse();
+        Window window = new Window();
     }
 }
