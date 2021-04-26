@@ -22,7 +22,9 @@ public class Data {
         return ans;
     }
 
-
+    public static String getPrice(int category_id, int item_id){
+        return items[category_id][item_id].price;
+    }
 
     public static void setItems(Item[][] items) {
         Data.items = items;
