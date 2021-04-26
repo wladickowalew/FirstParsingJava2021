@@ -10,6 +10,12 @@ public class Item {
         name  = element.select(qt).first().text();
         String qp = ".catalog-product__content .catalog-product__price";
         price = element.select(qp).first().text();
-        img_link = "no_image";
+//        String qi = ".catalog-product__image";
+//        Element el = element.select(qi).first();
+//        String str = el.attr("style");
+//        System.out.println(el);
+//        System.out.println(str);
+        //img_link = MyParser.getShitYandexMacLink(name);
+        //System.out.println(img_link);
     }
 }

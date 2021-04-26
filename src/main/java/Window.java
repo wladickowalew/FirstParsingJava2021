@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.io.UnsupportedEncodingException;
 
 public class Window extends JFrame {
     public Window(){
@@ -17,6 +18,7 @@ class MyPanel extends JPanel{
 
     JList categoryList, itemsList;
     JLabel price_lbl;
+    Image img;
 
     public MyPanel(){
         setLayout(null);
@@ -43,6 +45,12 @@ class MyPanel extends JPanel{
                 int c_i = categoryList.getSelectedIndex();
                 int i_i = itemsList.getSelectedIndex();
                 price_lbl.setText(Data.getPrice(c_i, i_i));
+                try {
+                    img = MyParser.downloadImage(MyParser.getShitYandexMacLink(Data.getName(c_i,i_i)));
+                } catch (UnsupportedEncodingException unsupportedEncodingException) {
+                    unsupportedEncodingException.printStackTrace();
+                }
+                repaint();
             }
         });
         JScrollPane itemsScroll = new JScrollPane(itemsList);
@@ -54,4 +62,10 @@ class MyPanel extends JPanel{
         add(price_lbl);
     }
 
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponents(g);
+        if (img != null)
+            g.drawImage(img, 600, 80, 150, 150, null);
+    }
 }

@@ -26,6 +26,10 @@ public class Data {
         return items[category_id][item_id].price;
     }
 
+    public static String getName(int category_id, int item_id){
+        return items[category_id][item_id].name;
+    }
+
     public static void setItems(Item[][] items) {
         Data.items = items;
     }
